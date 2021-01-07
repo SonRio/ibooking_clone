@@ -10,20 +10,23 @@ var toTopButton = (function() {
 	// Variables
 	var topButton = $('#back-to-top');
 	var scrollTop = $(window).scrollTop();
-	var isActive = false;
+	var isActive = true;
 
 	// Methods	
 
 	// Events
 	$(window).scroll(function() {
+
 		scrollTop = $(window).scrollTop();
 		if (scrollTop > 100 && !isActive) {
 	        isActive = true;
-	        topButton.fadeIn();
+			topButton.fadeIn();
+	
 	    } else if (scrollTop <= 100 && isActive) {
 	        isActive = false;
-	        topButton.fadeOut();
-	    }
+			topButton.fadeOut();
+
+		}
 	});
 })();
 
@@ -39,14 +42,12 @@ var smoothScroll = (function() {
 		var target = $(link.attr('href'));
 		var navbar = $('.navbar');
 		var navbarHeight = navbar.outerHeight();
-		console.log(target.offset().top);
 		if ( target.length ) {
 			$('html, body').animate({
-				scrollTop: target.offset().top - navbarHeight
+				scrollTop: target.offset().top - navbarHeight 
 			}, duration);
 		}
 	}
-
 	// Events
 	link.on('click', function(e) {
 		e.preventDefault();
@@ -59,10 +60,6 @@ var smoothScroll = (function() {
 /**
  * Newsletter
  */
-
-
-
-
 
 $(function() {
 	/*** Own Carousel (For Gallery Section) ***/
@@ -110,5 +107,20 @@ $(function() {
 		    }
  		});
 	};
+
+		var $carouselRoomDetail = $("#room-detail__carousel");
+
+	if ($carouselRoomDetail.length) {
+
+		$carouselRoomDetail.owlCarousel({
+			items:1,
+ 			margin:10,
+ 			nav:false,
+ 			animateOut:'fadeOut',
+ 			slideSpeed:150
+ 		});
+	};
 });
 
+
+	
